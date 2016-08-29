@@ -35,13 +35,15 @@ server.get('*', function(req, res, next) {
     const store = createStore(reducer)
     fetchNeeds(props, store)
     .then((asyncProps) => {
-      const appHtml = renderToString(
-        <Provider store={store}>
-          <LookRoot config={serverConfig}>
-            <AsyncRouterContext {...props} asyncProps={asyncProps} />
-          </LookRoot>
-        </Provider>
-      )
+      var appHtml = ''
+      if (process.env.NODE_ENV == 'production')
+        appHtml = renderToString(
+          <Provider store={store}>
+            <LookRoot config={serverConfig}>
+              <AsyncRouterContext {...props} asyncProps={asyncProps} />
+            </LookRoot>
+          </Provider>
+        )
       var html = templateHtml
       html = html.replace('<!--__APP_HTML__-->', appHtml)
       var appCSS = ''
