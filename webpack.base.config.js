@@ -10,7 +10,9 @@ const webpackConfig = {
     filename: "bundle.js"
   },
   plugins: [
-    
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': process.env.NODE_ENV == 'production' ? '"production"' : '"development"',
+    }),
   ],
   module: {
     loaders: [

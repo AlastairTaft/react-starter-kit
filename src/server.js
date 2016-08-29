@@ -44,7 +44,9 @@ server.get('*', function(req, res, next) {
       )
       var html = templateHtml
       html = html.replace('<!--__APP_HTML__-->', appHtml)
-      const appCSS = StyleSheet.renderToString(serverConfig.prefixer)
+      var appCSS = ''
+      if (process.env.NODE_ENV == 'production')
+        appCSS = StyleSheet.renderToString(serverConfig.prefixer)
       html = html.replace('<!-- {{css}} -->', appCSS)
       const initialState = {asyncProps, store: store.getState()}
       html = html.replace('{/*__INITIAL_STATE__*/}', JSON.stringify(initialState))
