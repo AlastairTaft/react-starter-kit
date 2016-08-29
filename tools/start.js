@@ -67,6 +67,8 @@ function runWebpackDevServer(){
   config.devtool = 'source-map'
   var compiler = webpack(config);
 
+  process.env.NODE_PATH = path.resolve(__dirname, '..', 'node_modules')
+
   var server = new WebpackDevServer(compiler, {
     // webpack-dev-server options
 
