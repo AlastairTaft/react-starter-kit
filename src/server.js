@@ -11,10 +11,9 @@ import { Provider } from 'react-redux'
 import reducer from './reducers/index.js'
 import routes from './modules/routes.js'
 import fs from 'fs'
-import { Presets, StyleSheet, LookRoot } from 'react-look'
+import jss from 'jss'
 
 const templateHtml = fs.readFileSync(path.resolve(__dirname, 'public', 'index.html'), 'utf8')
-const serverConfig = Presets['react-dom']
 const PORT = process.env.PORT || 5000
 
 var server = express()
@@ -29,9 +28,6 @@ server.get('*', function(req, res, next) {
       return next()
     }
     
-    serverConfig.userAgent = req.headers['user-agent']
-    serverConfig.styleElementId = '_look'
-
     const store = createStore(reducer)
     fetchNeeds(props, store)
     .then((asyncProps) => {
@@ -39,16 +35,14 @@ server.get('*', function(req, res, next) {
       if (process.env.NODE_ENV == 'production')
         appHtml = renderToString(
           <Provider store={store}>
-            <LookRoot config={serverConfig}>
-              <AsyncRouterContext {...props} asyncProps={asyncProps} />
-            </LookRoot>
+            <AsyncRouterContext {...props} asyncProps={asyncProps} />
           </Provider>
         )
       var html = templateHtml
       html = html.replace('<!--__APP_HTML__-->', appHtml)
       var appCSS = ''
       if (process.env.NODE_ENV == 'production')
-        appCSS = StyleSheet.renderToString(serverConfig.prefixer)
+        appCSS = jss.sheets.toString()
       html = html.replace('<!-- {{css}} -->', appCSS)
       const initialState = {asyncProps, store: store.getState()}
       html = html.replace('{/*__INITIAL_STATE__*/}', JSON.stringify(initialState))
