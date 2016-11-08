@@ -12,6 +12,7 @@ import reducer from './reducers/index.js'
 import routes from './modules/routes.js'
 import fs from 'fs'
 import jss from 'jss'
+import gzipStatic from 'connect-gzip-static'
 
 const templateHtml = fs.readFileSync(path.resolve(__dirname, 'public', 'index.html'), 'utf8')
 const PORT = process.env.PORT || 5000
@@ -51,6 +52,6 @@ server.get('*', function(req, res, next) {
     .catch(next)
   })
 })
-server.use(express.static(path.resolve(__dirname, 'public')))
+server.use(gzipStatic(path.resolve(__dirname, 'public')))
 
 server.listen(PORT, () => console.log(`Server listening on port ${PORT}!`))
