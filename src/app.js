@@ -1,4 +1,3 @@
-require("babel-polyfill")
 import { AsyncRouterContext } from 'redux-async-props'
 import { createStore }  from 'redux';
 import reducer from './reducers/index.js'

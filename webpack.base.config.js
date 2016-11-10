@@ -3,6 +3,7 @@ var webpack = require('webpack')
 
 const webpackConfig = {
   entry: [
+    'babel-polyfill',
     path.join(__dirname, 'src/app.js'),
   ],
   output: {
