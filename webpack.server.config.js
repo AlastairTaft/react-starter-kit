@@ -17,6 +17,7 @@ fs.readdirSync('node_modules')
 
 Object.assign(config, {
   entry: [
+    'babel-polyfill',
     path.join(__dirname, 'src/server.js'),
   ],
   output: {
