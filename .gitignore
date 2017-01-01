@@ -1,5 +1,6 @@
-/dist
+/docs
 node_modules
 ncp-debug.log
 npm-debug.log
 /tools-es5
+.DS_Store

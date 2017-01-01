@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
 
-const baseConfig = require('./webpack.base.config.js')
+const baseConfig = require('./webpack.config.js')
 
 var config = Object.assign({}, baseConfig)
 
@@ -17,13 +17,14 @@ fs.readdirSync('node_modules')
 
 Object.assign(config, {
   entry: [
-    'babel-polyfill',
-    path.join(__dirname, 'src/server.js'),
+    path.join(__dirname, 'src/templateRender.js'),
   ],
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "http://localhost:8080/",
-    filename: "server.bundle.js"
+    path: path.resolve(__dirname, "tools/templateRender"),
+    filename: "server.bundle.js",
+    //library: 'templateRender',
+    libraryTarget: 'commonjs2',
+    publicPath: '/js/'
   },
   target: 'node',
   externals: nodeModules,
@@ -34,10 +35,10 @@ Object.assign(config, {
 })
 
 // Clone the plugins first so we don't add to the original object
-config.plugins = config.plugins.slice()
+//config.plugins = config.plugins.slice()
 //webpackConfig.plugins.push(new webpack.IgnorePlugin(/\.(css|less)$/))
-config.plugins.push(
-  new webpack.BannerPlugin('require("source-map-support").install();',
-                             { raw: true, entryOnly: false }))
+//config.plugins.push(
+//  new webpack.BannerPlugin('require("source-map-support").install();',
+//                             { raw: true, entryOnly: false }))
 
 module.exports = config
