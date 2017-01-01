@@ -2,19 +2,28 @@ import { AsyncRouterContext } from 'redux-async-props'
 import { createStore }  from 'redux';
 import reducer from './reducers/index.js'
 import { render } from 'react-dom'
-import React from 'react'
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
-import routes from './modules/routes.js'
-import injectTapEventPlugin from 'react-tap-event-plugin'
+import routes from './routes.js'
+import runtime from 'serviceworker-webpack-plugin/lib/runtime'
 
-injectTapEventPlugin();
+if ('serviceWorker' in navigator) {
+  const registration = runtime.register().then(function(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  }).catch(function(err) {
+    // registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
+  });
+}
 
 //... 
 const initialState = window.__INITIAL_STATE__
 const store = createStore(reducer, initialState.store)
-render((
-  <Provider store={store}>
+  
+class MainApp extends Component {
+  render = () => <Provider store={store}>
     <Router 
       routes={routes} 
       history={browserHistory}
@@ -27,8 +36,5 @@ render((
       />}
     />
   </Provider>
-), document.getElementById('app'), () => {
-  // We don't need the static css any more once we have launched our application.
-  const ssStyles = document.getElementById('jss-styles')
-  ssStyles.parentNode.removeChild(ssStyles)
-})
+}
+export default MainApp
