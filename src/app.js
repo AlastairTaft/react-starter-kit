@@ -1,7 +1,6 @@
 import { AsyncRouterContext } from 'redux-async-props'
 import { createStore }  from 'redux';
 import reducer from './reducers/index.js'
-import { render } from 'react-dom'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'

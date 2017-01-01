@@ -18,6 +18,7 @@
     "file-loader": "^0.8.5",
     "jss": "^5.5.2",
     "jss-preset-default": "^0.3.1",
+    "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
@@ -42,7 +43,7 @@
   "scripts": {
     "start": "npm run build:clean && npm run build:copyBaseFiles && npm run build:emptyStaticFiles && NODE_PATH=./node_modules node server.js",
     "build:clean": "rimraf docs",
-    "build:copyBaseFiles": "ncp tools/baseFiles docs --stopOnErr",
+    "build:copyBaseFiles": "mkdirp tools/baseFiles && ncp tools/baseFiles docs --stopOnErr",
     "build:emptyStaticFiles": "babel-node tools/buildStaticPages.js --shell",
     "build": "npm run build:clean && npm run build:copyBaseFiles & npm run build:bundle & npm run build:static",
     "build:bundle": "webpack --production",
