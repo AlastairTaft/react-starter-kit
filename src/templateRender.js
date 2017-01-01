@@ -44,5 +44,3 @@ export default function(html, url){
     })
   })
 }
-// TODO
-//server.get('/login-redirect', (req, res) => res.sendFile(path.resolve(__dirname, 'public', 'login-redirect.html')))

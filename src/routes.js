@@ -1,26 +1,14 @@
-import Cats from './modules/Cats'
-import Dogs from './modules/Dogs'
-import Home from './modules/Home'
+import React from 'react'
 import App from './modules/App'
+import Dogs from './modules/Dogs'
+import Cats from './modules/Cats'
+import Home from './modules/Home'
+import { Route, IndexRoute } from 'react-router'
 
-export const routes = [
-  {
-	  path: 'cats',
-	  component: Cats,
-	},
-  {
-	  path: 'dogs',
-	  component: Dogs,
-	},
-]
-
-const rootRoute = {
-  path: '/',
-  component: App,
-  indexRoute: {
-    component: Home,
-  },
-  childRoutes: routes,
-}
-
-export default rootRoute
+export default (
+	<Route path="/" component={App}>
+		<IndexRoute component={Home} />
+		<Route path="/cats" component={Cats}/>
+		<Route path="/dogs" component={Dogs}/>
+	</Route>
+)

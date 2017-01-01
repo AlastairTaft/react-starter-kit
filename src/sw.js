@@ -3,10 +3,8 @@ var urlsToCache = serviceWorkerOption.assets
 
 // Need to also add all the routes
 urlsToCache.push('/')
-urlsToCache.push('/about/')
-urlsToCache.push('/products/')
-urlsToCache.push('/services/')
-urlsToCache.push('/contact/')
+urlsToCache.push('/dogs/')
+urlsToCache.push('/cats/')
 
 self.addEventListener('install', function(event) {
   // Perform install steps

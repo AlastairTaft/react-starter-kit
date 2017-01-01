@@ -42,7 +42,7 @@
   "scripts": {
     "start": "npm run build:clean && npm run build:copyBaseFiles && npm run build:emptyStaticFiles && NODE_PATH=./node_modules node server.js",
     "build:clean": "rimraf docs",
-    "build:copyBaseFiles": "ncp tools/docs_baseFiles docs --stopOnErr",
+    "build:copyBaseFiles": "ncp tools/baseFiles docs --stopOnErr",
     "build:emptyStaticFiles": "babel-node tools/buildStaticPages.js --shell",
     "build": "npm run build:clean && npm run build:copyBaseFiles & npm run build:bundle & npm run build:static",
     "build:bundle": "webpack --production",

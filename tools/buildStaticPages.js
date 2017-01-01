@@ -21,7 +21,7 @@ var buildStaticPages = async(shellContent = false) => {
   if (shellContent)
     var templateRender = (html, url) => html
   else
-    var templateRender = require('./templateRender/server.bundle.js').default
+    var templateRender = require('./templateRender').default
 
   const getTemplate = async (pathToRoot = '', url) => {
     try {
