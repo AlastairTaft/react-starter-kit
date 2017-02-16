@@ -38,15 +38,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "start": "node server.js",
-    "build:clean": "rimraf docs",
-    "build:copyBaseFiles": "ncp tools/baseFiles docs --stopOnErr",
-    "build:emptyStaticFiles": "babel-node tools/buildStaticPages.js --shell",
-    "build": "npm run build:clean && npm run build:copyBaseFiles & npm run build:bundle & npm run build:static",
-    "build:bundle": "webpack --production",
-    "build:static": "npm run build:static:templateRenderFunc && npm run build:static:pages",
-    "build:static:templateRenderFunc": "rimraf tools/templateRender && webpack --config=webpack.templateRender.config.js",
-    "build:static:pages": "babel-node tools/buildStaticPages.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

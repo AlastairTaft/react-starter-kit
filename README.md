@@ -5,8 +5,7 @@ Should be enough to get started without adding to much.
 Start with `yarn install` to fetch dependencies.
 
  - `npm start` Run the code in development mode
- - ~`npm run build` Compile the assets, ready to run in production. Generates the
- 	 static code in the docs folder.~
+ - ~~`npm run build` Compile the assets, ready to run in production. Generates the static code in the docs folder.~~
 
 
 ## Technology
