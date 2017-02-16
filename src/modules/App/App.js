@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import jss from 'jss'
 import preset from 'jss-preset-default'
+import Home from './../Home'
+import { Route, Link } from 'react-router-dom'
+import Cats from './../Cats'
+import Dogs from './../Dogs'
 
 jss.setup(preset())
 
@@ -25,7 +28,7 @@ export default class App extends Component {
     return <div>
       <h1>Animals</h1>
 
-      <h5 className={classes.title}>A simple async props example.</h5>
+      <h5 className={classes.title}>A simple sample application.</h5>
 
       <ul role="nav">
         <li><Link to="/">Home</Link></li>
@@ -33,7 +36,9 @@ export default class App extends Component {
         <li><Link to="/dogs">Dogs</Link></li>
       </ul>
 
-      {this.props.children}
+      <Route exact path="/" component={Home} />
+      <Route exact path="/cats" component={Cats} />
+      <Route exact path="/dogs" component={Dogs} />
 
     </div>
   }
