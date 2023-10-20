@@ -1,3 +1,6 @@
+# ⚠️ Archived
+This repo is not maintained.
+
 # Simple React Starter Kit
 This is a barebones repository for writing static client side react applications. 
 Should be enough to get started without adding to much.
